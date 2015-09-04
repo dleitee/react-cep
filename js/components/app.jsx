@@ -1,10 +1,12 @@
 import React from 'react';
+import Address from './address.jsx';
+import Error from './error.jsx';
  
 class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = {value: '', address: [], error: ""};
     }
 
     handleChange(event){
@@ -18,16 +20,23 @@ class App extends React.Component {
         var url = "http://api.postmon.com.br/v1/cep/";
         var param = this.state.value;
 
-        $.get(url+param , function(data) {
-        
-            this.setState({address: data, error: null})
-        
-        }.bind(this))
-        .done(function(data) {
+        var xhr= $.get(url+param , function(data) {});
 
-        }.bind(this)).fail(function(err) {
+        xhr.done(function(data) {
+            this.setState({address: [
+                    {label: 'Logradouro', value:  data.logradouro},
+                    {label: 'Número', value: ''}, 
+                    {label: 'Complemento', value: data.complemento}, 
+                    {label: 'Bairro', value: data.bairro}, 
+                    {label: 'Cidade', value: data.cidade}, 
+                    {label: 'Estado', value: data.estado}
+                ], error: ""});
+        }.bind(this));
+
+        xhr.fail(function(data) {
         
-            this.setState({address: null, error: err})
+            this.setState({address: [], error: "CEP não encontrado"})
+            console.log(data);
         
         }.bind(this));
         
@@ -37,30 +46,22 @@ class App extends React.Component {
 
         return (
             <div>
-            <form action="#">
                 <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <input className="mdl-textfield__input" 
                             type="text" 
                             ref="cep" 
-                            id="cep" 
                             defaultValue={this.state.value} 
                             onChange={this.handleChange.bind(this)} />
-                    <label className="mdl-textfield__label" htmlFor="cep">Cep...</label>
+                    <label className="mdl-textfield__label">CEP</label>
                 </div>
                 <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
                         onClick={this.findCep.bind(this)}>
                   Buscar cep
                 </button>
-                
-            </form>
-            <div>
-                <pre>
-                    {JSON.stringify(this.state.address)}
-                </pre>
-            </div>
-            <div>
-                <pre>{this.state.error}</pre>
-            </div>
+                <hr/>
+                <Address address={this.state.address} />
+                <Error message={this.state.error} />
+
             </div>
         );
     }

@@ -31,7 +31,7 @@ gulp.task('js', function () {
 
 });
 
-gulp.task('server', ['js'], function() {
+gulp.task('server', function() {
     browserSync.init({
         server: "./"
     });

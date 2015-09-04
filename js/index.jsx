@@ -1,7 +1,7 @@
 import React from 'react';
 import App from './components/app';
 
-const mountNode = document.body;
+const mountNode = document.getElementById('content');
 
 
 React.render(

@@ -8,14 +8,41 @@
         <script src="./bower_components/material-design-lite/material.min.js"></script>
         <script src="./bower_components/jquery/dist/jquery.min.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <title>Cep - React</title>
+        <style type="text/css">
+        .mdl-card {
+             margin: 0 auto;
+             margin-top: 2em;
+        }
+        </style>
 
     </head>
 
     <body>
 
-        
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <!-- Desktop view -->
+            <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row" style="padding-left: 2em; padding-right: 0">
+                    <span class="mdl-layout-title">React API Cep</span>
+                    <div class="mdl-layout-spacer"></div>
+                    <nav class="mdl-navigation">
+                        <a class="mdl-navigation__link" 
+                            href="https://github.com/dleitee/react-cep"><i class="fa fa-github fa-3x" style="vertical-align: middle"></i></a>
+                    </nav>
+                </div>
+            </header>
+            <main class="mdl-layout__content">
+                <div class="page-content">
+                    <div class="mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title mdl-card--expand" id="content">
+                            
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
     </body>
     <script src="./dist/bundle.js"></script>
     
