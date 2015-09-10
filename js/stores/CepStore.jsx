@@ -17,18 +17,20 @@ function search(cep) {
 
     _loading = true;
 
-    var url = "http://api.postmon.com.br/v1/cep/";
+    var url = "https://api.postmon.com.br/v1/cep/";
     var param = cep;
 
-    var xhr= $.get(url+param , function(data) {});
-
-    xhr.done(function(data) {
-        setAddress(data);
-    }.bind(this));
-
-    xhr.fail(function(data) {
-        setAddress({error: true});
-    }.bind(this));
+    $.ajax({
+        url: url+param, 
+        type: 'get',
+        error: function(XMLHttpRequest, textStatus, errorThrown){
+            setAddress({error: true});
+        },
+        success: function(data){
+            setAddress(data);
+        }
+    
+    });
 
 }
 
