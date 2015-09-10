@@ -18,7 +18,7 @@ gulp.watch('js/**/*.jsx', ['js']);
 gulp.task('js', function () {
 
   browserify({
-    entries: './js/index.jsx',
+    entries: './js/app.jsx',
     extensions: ['.jsx'],
     debug: true
   })
