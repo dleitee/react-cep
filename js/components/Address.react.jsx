@@ -5,12 +5,13 @@ var ReactPropTypes = React.PropTypes;
 var Address = React.createClass({
 
     propTypes: {
-        address: ReactPropTypes.array.isRequired
+        address: ReactPropTypes.array.isRequired,
+        load: ReactPropTypes.bool.isRequired
     },
 
     render: function() {
 
-        if (this.props.address.length < 1) {
+        if (this.props.address.length < 1 || this.props.load) {
             return null;
         }
 
@@ -22,7 +23,7 @@ var Address = React.createClass({
         }
 
         return (
-            <table className="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+            <table className="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" style={{width: '100%'}}>
                 <thead>
                     <tr>
                         <th className="mdl-data-table__cell--non-numeric">Label</th>

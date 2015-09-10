@@ -6,6 +6,7 @@ var assign = require('object-assign');
 var CHANGE_EVENT = 'change';
 
 var _address = [];
+var _loading = false;
 
 /**
  * Search an address with cep
@@ -13,14 +14,20 @@ var _address = [];
  */
 function search(cep) {
 
-    var data = {
-        logradouro: 'Rua Sérgio Gil',
-        numero: '263',
-        complemento: 'APTO 702 A Torre 3',
-        bairro: 'Balneário',
-        cidade: 'Florianópolis',
-        estado: 'SC'
-    };
+    _loading = true;
+
+    var url = "http://api.postmon.com.br/v1/cep/";
+    var param = cep;
+
+    var xhr= $.get(url+param , function(data) {});
+
+    xhr.done(function(data) {
+        setAddress(data);
+    }.bind(this));
+
+}
+
+function setAddress(data){
 
     _address = [
         {label: 'Logradouro', value:  data.logradouro},
@@ -31,6 +38,9 @@ function search(cep) {
         {label: 'Estado', value: data.estado}
     ];
 
+    _loading = false;
+
+    CepStore.emitChange();
 }
 
 
@@ -39,6 +49,10 @@ var CepStore = assign({}, EventEmitter.prototype, {
 
     getAddress: function() {
         return _address;
+    },
+
+    isLoading: function(){
+        return _loading;
     },
 
     emitChange: function() {

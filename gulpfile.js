@@ -30,7 +30,7 @@ gulp.task('js', function () {
 
 gulp.task('deploy', function(){
 
-    gulp.src(['./bower_components/jquery/dist/jquery.min.js', './bower_components/material-design-lite/material.min.js', './bower_components/material-design-lite/material.min.css'])
+    gulp.src(['./bower_components/jquery/dist/jquery.min.js', './bower_components/material-design-lite/material.min.js', './bower_components/material-design-lite/material.min.css', './css/spinner.css'])
       .pipe(gulp.dest('./public/'));
 
 });

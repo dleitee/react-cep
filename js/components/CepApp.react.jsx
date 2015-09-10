@@ -1,5 +1,6 @@
 var Search = require('./Search.react');
 var Address = require('./Address.react');
+var LoadingBar = require('./LoadingBar.react');
 
 var React = require('react');
 var CepStore = require('../stores/CepStore');
@@ -8,6 +9,7 @@ var CepActions = require('../actions/CepActions');
 function getCepState() {
   return {
     address: CepStore.getAddress(),
+    loading: CepStore.isLoading(),
   };
 }
 
@@ -32,9 +34,11 @@ var CepApp = React.createClass({
     return (
       <div>
             <Search />
+            <LoadingBar load={this.state.loading}/>
+            <br/>
             <Address
               address={this.state.address}
-              />
+              load={this.state.loading} />
       </div>
     );
   },
