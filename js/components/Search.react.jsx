@@ -26,14 +26,14 @@ var Search = React.createClass({
                 <CepTextInput
                     id="cep-input"
                     className="mdl-textfield__input"
-                    onSave={this._onSave} />
+                    onEnter={this._onEnter} />
                 <label className="mdl-textfield__label">Digite o Cep...</label>
                 <span className="mdl-textfield__error">Cep não encontrado</span>
             </div>
         );
     },
 
-    _onSave: function(cep) {
+    _onEnter: function(cep) {
         if (cep.trim()){
             CepActions.search(cep);
         }

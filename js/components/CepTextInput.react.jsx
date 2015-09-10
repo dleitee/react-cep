@@ -9,7 +9,7 @@ var CepTextInput = React.createClass({
         className: ReactPropTypes.string,
         id: ReactPropTypes.string,
         placeholder: ReactPropTypes.string,
-        onSave: ReactPropTypes.func.isRequired,
+        onEnter: ReactPropTypes.func.isRequired,
         value: ReactPropTypes.string
     },
 
@@ -25,7 +25,7 @@ var CepTextInput = React.createClass({
                 className={this.props.className}
                 id={this.props.id}
                 placeholder={this.props.placeholder}
-                onBlur={this._save}
+                onBlur={this._enter}
                 onChange={this._onChange}
                 onKeyDown={this._onKeyDown}
                 value={this.state.value}
@@ -33,8 +33,8 @@ var CepTextInput = React.createClass({
         );
     },
 
-    _save: function() {
-        this.props.onSave(this.state.value);
+    _enter: function() {
+        this.props.onEnter(this.state.value);
         this.setState({
             value: this.state.value
         });
@@ -48,7 +48,7 @@ var CepTextInput = React.createClass({
 
     _onKeyDown: function(event) {
         if (event.keyCode === ENTER_KEY_CODE) {
-            this._save();
+            this._enter();
         }
     }
 
