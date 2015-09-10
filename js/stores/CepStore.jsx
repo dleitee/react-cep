@@ -5,9 +5,7 @@ var assign = require('object-assign');
 
 var CHANGE_EVENT = 'change';
 
-var _address = {
-    teste: 'teste'
-};
+var _address = [];
 
 /**
  * Search an address with cep

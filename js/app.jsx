@@ -4,5 +4,5 @@ var CepApp = require('./components/CepApp.react');
 
 React.render(
   <CepApp />,
-  document.getElementById('content')
+  document.getElementById('content') 
 );

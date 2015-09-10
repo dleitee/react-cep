@@ -1,5 +1,5 @@
-var Header = require('./Header.react');
-var MainSection = require('./MainSection.react');
+var Search = require('./Search.react');
+var Address = require('./Address.react');
 
 var React = require('react');
 var CepStore = require('../stores/CepStore');
@@ -31,8 +31,8 @@ var CepApp = React.createClass({
   render: function() {
     return (
       <div>
-            <Header />
-            <MainSection
+            <Search />
+            <Address
               address={this.state.address}
               />
       </div>

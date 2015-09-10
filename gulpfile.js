@@ -10,6 +10,8 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     buffer = require('vinyl-buffer');
 
+gulp.watch('js/**/*.jsx', ['js']);
+
 gulp.task('js', function () {
 
   browserify({
