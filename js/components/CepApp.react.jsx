@@ -7,10 +7,11 @@ var CepStore = require('../stores/CepStore');
 var CepActions = require('../actions/CepActions');
 
 function getCepState() {
-  return {
-    address: CepStore.getAddress(),
-    loading: CepStore.isLoading(),
-  };
+    return {
+        address: CepStore.getAddress(),
+        loading: CepStore.isLoading(),
+        error: CepStore.haveError(),
+    };
 }
 
 
@@ -33,9 +34,8 @@ var CepApp = React.createClass({
   render: function() {
     return (
       <div>
-            <Search />
+            <Search error={this.state.error} />
             <LoadingBar load={this.state.loading}/>
-            <br/>
             <Address
               address={this.state.address}
               load={this.state.loading} />

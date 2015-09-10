@@ -7,6 +7,7 @@ var CHANGE_EVENT = 'change';
 
 var _address = [];
 var _loading = false;
+var _error = false;
 
 /**
  * Search an address with cep
@@ -25,18 +26,28 @@ function search(cep) {
         setAddress(data);
     }.bind(this));
 
+    xhr.fail(function(data) {
+        setAddress({error: true});
+    }.bind(this));
+
 }
 
 function setAddress(data){
 
-    _address = [
-        {label: 'Logradouro', value:  data.logradouro},
-        {label: 'Número', value: data.numero}, 
-        {label: 'Complemento', value: data.complemento}, 
-        {label: 'Bairro', value: data.bairro}, 
-        {label: 'Cidade', value: data.cidade}, 
-        {label: 'Estado', value: data.estado}
-    ];
+    if(data.error){
+        _address = [];
+        _error = true;
+    }else{
+        _error = false;
+        _address = [
+            {label: 'Logradouro', value:  data.logradouro},
+            {label: 'Número', value: data.numero}, 
+            {label: 'Complemento', value: data.complemento}, 
+            {label: 'Bairro', value: data.bairro}, 
+            {label: 'Cidade', value: data.cidade}, 
+            {label: 'Estado', value: data.estado}
+        ];
+    }
 
     _loading = false;
 
@@ -53,6 +64,10 @@ var CepStore = assign({}, EventEmitter.prototype, {
 
     isLoading: function(){
         return _loading;
+    },
+
+    haveError: function(){
+        return _error;
     },
 
     emitChange: function() {

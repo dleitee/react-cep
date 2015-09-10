@@ -35,9 +35,12 @@ var CepTextInput = React.createClass({
 
     _save: function() {
         this.props.onSave(this.state.value);
+        this.setState({
+            value: this.state.value
+        });
     },
 
-    _onChange: function(/*object*/ event) {
+    _onChange: function(event) {
         this.setState({
             value: event.target.value
         });
