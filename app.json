@@ -1,0 +1,8 @@
+{
+  "name": "React Cep",
+  "description": "A barebones Node.js app using Express 4",
+  "repository": "https://github.com/dleitee/react-cep.git",
+  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["flux", "react", "cep"],
+  "image": "heroku/nodejs"
+}

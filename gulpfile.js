@@ -6,14 +6,9 @@
 
 var gulp = require('gulp'),
     browserify = require('browserify'),
-    babelify = require('babelify'),
     source = require('vinyl-source-stream'),
     uglify = require('gulp-uglify'),
     buffer = require('vinyl-buffer');
-
-var browserSync = require('browser-sync').create();
-
-gulp.watch('js/**/*.jsx', ['js']);
 
 gulp.task('js', function () {
 
@@ -22,21 +17,22 @@ gulp.task('js', function () {
     extensions: ['.jsx'],
     debug: true
   })
-  .transform(babelify)
+  .transform(["reactify"])
   .bundle()
   .pipe(source('bundle.js'))
   .pipe(buffer())
   .pipe(uglify())
-  .pipe(gulp.dest('dist'));
+  .pipe(gulp.dest('./public/'));
 
 });
 
-gulp.task('server', function() {
-    browserSync.init({
-        server: "./"
-    });
+gulp.task('deploy', function(){
+
+    gulp.src(['./bower_components/jquery/dist/jquery.min.js', './bower_components/material-design-lite/material.min.js', './bower_components/material-design-lite/material.min.css'])
+      .pipe(gulp.dest('./public/'));
+
 });
 
-gulp.task('default', ['server'], function(){
+gulp.task('default', ['js'], function(){
 
 });
