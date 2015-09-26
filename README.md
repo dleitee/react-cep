@@ -18,11 +18,15 @@ $ npm install
 
 Executar o build:
 ```
-gulp
+$ gulp
 ```
 
 Executar aplicação:
 
 ```
-node index.js
+$ node index.js
 ```
+
+Acesso a aplicação: [http://localhost:5000](http://localhost:5000)
+
+
