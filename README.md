@@ -1,4 +1,7 @@
 # react-cep
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/dleitee/react-cep.svg)](https://greenkeeper.io/)
+
 Componente em React para acessar api de cep [Postmon](https://github.com/PostmonAPI/postmon)
 
 ## Executar localmente
